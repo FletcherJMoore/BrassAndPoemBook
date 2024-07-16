@@ -81,7 +81,7 @@ void DisplayMenu()
         }
         else if (choice == "4")
         {
-            // UpdateProduct(products, productTypes);
+             UpdateProduct(products, productTypes);
         }
         else if (choice == "5")
         {
@@ -163,7 +163,70 @@ void AddProduct(List<Product> products, List<ProductType> productTypes)
 
 void UpdateProduct(List<Product> products, List<ProductType> productTypes)
 {
-    throw new NotImplementedException();
+    Console.WriteLine("Please select product to update:");
+    Console.WriteLine("Products:");
+
+    for (int i = 0; i < products.Count; i++)
+    {
+        Console.WriteLine($"{i + 1}. {products[i].Name}");
+    }
+
+    Product chosenProduct = null;
+
+    while (chosenProduct == null)
+    {
+        try
+        {
+            int response = int.Parse(Console.ReadLine().Trim());
+
+            chosenProduct = products[response - 1];
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Please type only integers!");
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            Console.WriteLine("Please choose an existing item only!");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            Console.WriteLine("Do better!");
+        }
+
+        Console.WriteLine(@"Please choose a field to edit:
+        1. Name
+        2. Price
+        3. Category");
+
+        int index = products.IndexOf(chosenProduct);
+
+        int choice = int.Parse(Console.ReadLine());
+        if (choice == 1)
+        {
+            Console.WriteLine("Enter new name");
+            string newName = Console.ReadLine();
+            products[index].Name = newName;
+        }
+        else if (choice == 2)
+        {
+            Console.WriteLine("Enter new price");
+            decimal newPrice = Convert.ToDecimal(Console.ReadLine());
+            products[index].Price = newPrice;
+
+        }
+        else if (choice == 2)
+        {
+            Console.WriteLine(@"Enter a new category
+           1. Brass
+           2. Poem");
+
+            int newID = int.Parse(Console.ReadLine());
+            products[index].ProductTypeId = newID;
+        }
+
+    }
 }
 
 // don't move or change this!
