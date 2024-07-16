@@ -50,46 +50,44 @@ List<ProductType> productTypes = new List<ProductType>()
 };
 //put your greeting here
 Console.WriteLine("Welcome to Brazz & Poem!");
+
 //implement your loop here
-string choice = null;
-while(choice != "0")
+DisplayMenu();
+
+void DisplayMenu()
 {
-    Console.WriteLine(@"Chose an option:
+    string choice = null;
+    while (choice != "5")
+    {
+        Console.WriteLine(@"Chose an option:
     1. Display all products
     2. Delete a product
     3. Add a new product
     4. Update product properties
-    5. Exit ");
+    5. Exit");
 
-    Console.ReadLine();
-    if (choice == "0")
-    {
-        DisplayMenu();
+        choice = Console.ReadLine();
+        if (choice == "1")
+        {
+            // DisplayAllProducts();
+        }
+        else if (choice == "2")
+        {
+            // AddProduct();
+        }
+        else if (choice == "3")
+        {
+            // DeleteProduct();
+        }
+        else if (choice == "4")
+        {
+            // UpdateProduct();
+        }
+        else if (choice == "5")
+        {
+            Console.WriteLine("Goodbye!");
+        }
     }
-    else if (choice == "1") 
-    {
-        // DisplayAllProducts();
-    }
-    else if (choice == "2") 
-    {
-        // AddProduct();
-    }
-    else if (choice == "3") 
-    {
-        // DeleteProduct();
-    }
-    else if (choice == "4") 
-    {
-        // UpdateProduct();
-    }
-    else if (choice == "5") 
-    {
-        Console.WriteLine("Goodbye!");
-    }
-}
-void DisplayMenu()
-{
-    throw new NotImplementedException();
 }
 
 void DisplayAllProducts(List<Product> products, List<ProductType> productTypes)
