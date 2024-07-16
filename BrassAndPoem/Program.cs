@@ -61,8 +61,8 @@ void DisplayMenu()
     {
         Console.WriteLine(@"Chose an option:
     1. Display all products
-    2. Delete a product
-    3. Add a new product
+    2. Post a new product
+    3. Delte a product
     4. Update product properties
     5. Exit");
 
@@ -77,7 +77,7 @@ void DisplayMenu()
         }
         else if (choice == "3")
         {
-            // DeleteProduct(products, productTypes);
+             DeleteProduct(products, productTypes);
         }
         else if (choice == "4")
         {
@@ -101,7 +101,37 @@ void DisplayAllProducts(List<Product> products, List<ProductType> productTypes)
 
 void DeleteProduct(List<Product> products, List<ProductType> productTypes)
 {
-    throw new NotImplementedException();
+    for (int i = 0; i < products.Count; i++)
+    {
+        Console.WriteLine($"{i + 1}. {products[i].Name}");
+    }
+
+    Product RemoveProduct = null;
+    while (RemoveProduct == null)
+    {
+        Console.WriteLine("Choose a product you'd like to delete:");
+        try
+        {
+            int response = int.Parse(Console.ReadLine()!.Trim());
+            RemoveProduct = products[response - 1];
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Please choose an existing item only!");
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            Console.WriteLine("Please choose an existing item only!");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            Console.WriteLine("Do Better!");
+        }
+    }
+    products.Remove(RemoveProduct);
+
+    Console.WriteLine($"You have deleted {RemoveProduct.Name}!");
 }
 
 void AddProduct(List<Product> products, List<ProductType> productTypes)
