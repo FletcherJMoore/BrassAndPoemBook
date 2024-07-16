@@ -69,19 +69,19 @@ void DisplayMenu()
         choice = Console.ReadLine();
         if (choice == "1")
         {
-            // DisplayAllProducts();
+             DisplayAllProducts(products, productTypes);
         }
         else if (choice == "2")
         {
-            // AddProduct();
+             AddProduct(products, productTypes);
         }
         else if (choice == "3")
         {
-            // DeleteProduct();
+            // DeleteProduct(products, productTypes);
         }
         else if (choice == "4")
         {
-            // UpdateProduct();
+            // UpdateProduct(products, productTypes);
         }
         else if (choice == "5")
         {
@@ -92,7 +92,11 @@ void DisplayMenu()
 
 void DisplayAllProducts(List<Product> products, List<ProductType> productTypes)
 {
-    throw new NotImplementedException();
+    Console.WriteLine("Products:");
+    for (int i = 0; i < products.Count; i++)
+    {
+        Console.WriteLine($"{i + 1}. {products[i].Name}");
+    }
 }
 
 void DeleteProduct(List<Product> products, List<ProductType> productTypes)
@@ -102,7 +106,29 @@ void DeleteProduct(List<Product> products, List<ProductType> productTypes)
 
 void AddProduct(List<Product> products, List<ProductType> productTypes)
 {
-    throw new NotImplementedException();
+    Console.WriteLine("Post a product!");
+
+    Console.WriteLine("Type the product name:");
+    string? name = Console.ReadLine()!;
+
+    Console.WriteLine("Type the product price:");
+    decimal price = decimal.Parse(Console.ReadLine()!.Trim());
+
+    Console.WriteLine(@"Chose a category:
+1. Brass
+2. Poem");
+    int id = int.Parse(Console.ReadLine()!.Trim());
+
+    Product product = new Product
+    {
+        Name = name,
+        Price = price,
+        ProductTypeId = id,
+    };
+
+    products.Add(product);
+
+    Console.WriteLine("Product successfully addded!");
 }
 
 void UpdateProduct(List<Product> products, List<ProductType> productTypes)
